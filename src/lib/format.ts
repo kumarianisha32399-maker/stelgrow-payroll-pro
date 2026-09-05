@@ -37,9 +37,9 @@ const ONES = [
 const TENS = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
 
 function twoDigits(n: number): string {
-  if (n < 20) return ONES[n];
-  const t = TENS[Math.floor(n / 10)];
-  const o = ONES[n % 10];
+  if (n < 20) return ONES[n] ?? "";
+  const t = TENS[Math.floor(n / 10)] ?? "";
+  const o = ONES[n % 10] ?? "";
   return o ? `${t} ${o}` : t;
 }
 
@@ -56,7 +56,7 @@ export function rupeesInWords(amount: number): string {
   if (crore) parts.push(`${twoDigits(crore)} Crore`);
   if (lakh) parts.push(`${twoDigits(lakh)} Lakh`);
   if (thousand) parts.push(`${twoDigits(thousand)} Thousand`);
-  if (hundred) parts.push(`${ONES[hundred]} Hundred`);
+  if (hundred) parts.push(`${ONES[hundred] ?? ""} Hundred`);
   if (rest) parts.push(twoDigits(rest));
   return `${parts.join(" ")} Rupees Only`;
 }
